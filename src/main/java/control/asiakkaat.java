@@ -13,9 +13,11 @@ import asiakas.dao.Dao;
 import tehtävät.Asiakas;
 
 
-@WebServlet("/asiakkaat")
+@WebServlet("/asiakkaat/*")
 public class asiakkaat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
        
 
     public asiakkaat() {
@@ -25,6 +27,9 @@ public class asiakkaat extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Asiakkaat.doGet()");
+		String pathInfo = request.getPathInfo();
+		System.out.println("polku: " +pathInfo);
+		String hakusana = pathInfo.replace("/","");
 		Dao dao = new Dao();
 		ArrayList<Asiakas> asiakkaat = dao.listaaKaikki();
 		System.out.println(asiakkaat);

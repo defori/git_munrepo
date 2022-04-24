@@ -6,10 +6,30 @@
 <meta charset="ISO-8859-1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
+<style>
+label {
+	color: green;
+	display: block;
+	width: 70px;
+	float: left;
+}
+input {
+	margin-bottom:6px;
+}
+
+.oikealle{
+	text-align:right;
+}
+</style>
 </head>
 <body>
 <table id="listaus">
 <thead>
+<tr>
+	<th class="oikealle">Hakusana:</th>
+	<th colspan="2"><input type:"text" id="hakusana"></th>
+	<th><input type="button" value="hae" id="hakunappi"></th>
+	</tr>
 <tr>
 	<th>Asiakas_id</th>
 	<th>Etunimi</th>
@@ -26,7 +46,16 @@
 </table>
 <script>
 $(document).ready(function()){
-	$.ajax({url:"asiakkaat", 
+	haeAsiakkaat();
+	
+	$("hakunappi").click(function(){
+		console.log($("#hakusana").val());
+		haeAsiakkaat();
+	});
+});
+function haeAsiakkaat(){
+	$("#listaus tbody").empty();
+	$.ajax({url:"asiakkaat/"+$("#hakusana").val(), 
 		type:"GET", 
 		dataType:"json", 
 		success:function(result){
@@ -43,7 +72,8 @@ $(document).ready(function()){
 		
 		});
 	}});
-});
+}
+
 </script>
 </body>
 </html>

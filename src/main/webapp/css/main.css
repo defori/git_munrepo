@@ -1,1 +1,10 @@
-@charset "ISO-8859-1";
+label {
+	color: green;
+	display: block;
+	width: 70px;
+	float: left;
+}
+input {
+	margin-bottom:6px;
+}
+
