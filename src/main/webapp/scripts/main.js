@@ -9,12 +9,19 @@ function requestURLParam(sParam){
         }
     }
 }
-function formDataJsonStr(formArray) {
-	var returnArray = {};
-	for (var i = 0; i < formArray.length; i++){
-		returnArray[formArray[i]['name']] = formArray[i]['value'];
-	}
-	return JSON.stringify(returnArray);
+function formDataToJSON(data){
+	var returnStr="{";
+	for(var i=0; i<data.length; i++){		
+		returnStr+="\"" +data[i].name + "\":\"" + data[i].value + "\",";
+	}	
+	returnStr = returnStr.substring(0, returnStr.length - 1);
+	returnStr+="}";
+	return returnStr;
+}	
+
+function siivoa(teksti){
+	teksti=teksti.replace("<","");
+	teksti=teksti.replace(";","");
+	teksti=teksti.replace("'","''");
+	return teksti;
 }
-
-

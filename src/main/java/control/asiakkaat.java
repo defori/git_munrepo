@@ -38,13 +38,17 @@ public class asiakkaat extends HttpServlet {
 		}else if(pathInfo.indexOf("haeyksi")!=-1) {	
 			String asiakas_id = pathInfo.replace("/haeyksi/", "");		
 			Asiakas Asiakas = dao.etsiAsiakas(asiakas_id);
+			if(Asiakas==null) {
+				strJSON = "{ }";
+			}else {
 			JSONObject JSON = new JSONObject();
 			JSON.put("etunimi", Asiakas.getEtunimi());
 			JSON.put("sukunimi", Asiakas.getSukunimi());
 			JSON.put("puhelin", Asiakas.getPuhelin());
 			JSON.put("sposti", Asiakas.getSposti());
 			JSON.put("asiakas_id", Asiakas.getAsiakas_id());	
-			strJSON = JSON.toString();		
+			strJSON = JSON.toString();
+			}
 		}else{
 			String hakusana = pathInfo.replace("/", "");
 			asiakkaat = dao.listaaKaikki(hakusana);

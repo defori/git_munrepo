@@ -150,7 +150,7 @@ public class Dao {
 	
 	public boolean muutaAsiakas(Asiakas asiakas, String asiakas_id){
 		boolean paluuArvo=true;
-		sql="UPDATE asiakkaat SET asiakas_id=?, etunimi=?, sukunimi=?, puhelin=?, sposti=? WHERE asiakas_id=?";						  
+		sql="UPDATE asiakkaat SET asiakas_id=?, etunimi=?, sukunimi=?, puhelin=?, sposti=? WHERE asiakas_id=?";  
 		try {
 			con = yhdista();
 			stmtPrep=con.prepareStatement(sql); 
